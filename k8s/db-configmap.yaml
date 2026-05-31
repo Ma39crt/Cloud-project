@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: db-init-script-configmap
+data:
+  init.sql: |
+    --  make table
+    CREATE TABLE IF NOT EXISTS todos (
+        id SERIAL PRIMARY KEY,
+        title VARCHAR(255) NOT NULL,
+        completed BOOLEAN DEFAULT FALSE
+    );
+    
+    --  put in tasks 
+    INSERT INTO todos (title, completed) VALUES
+        ('Learn Docker', false),
+        ('Build ToDo App', true),
+        ('Write logbook', false),
+        ('Record video', false);
